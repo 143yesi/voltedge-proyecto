@@ -1,8 +1,19 @@
-class Reserva:
-    def __init__(self, id_reserva, usuario, punto_carga):
-        self.id_reserva = id_reserva
-        self.usuario = usuario
-        self.punto_carga = punto_carga
+class Charger:
+    def __init__(self, id, type, status="available"):
+        self.id = id
+        self.type = type
+        self.status = status  # disponible / ocupado / mantenimiento
 
-    def __str__(self):
-        return f"Reserva {self.id_reserva} - {self.usuario.nombre} en {self.punto_carga.ubicacion}"
+    def start_charge(self):
+        if self.status == "disponible":
+            self.status = "ocupado"
+            print(f"Cargador {self.id} iniciado.")
+        else:
+            print(f"Cargador {self.id} no está disponible.")
+
+    def stop_charge(self):
+        if self.status == "ocupado":
+            self.status = "disponible"
+            print(f"Cargador {self.id} liberado.")
+        else:
+            print(f"Cargador {self.id} no estaba ocupado.")

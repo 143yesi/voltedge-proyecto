@@ -1,18 +1,68 @@
-from services.service import ServicioCarga
+from services.service import ChargingService
 
 def main():
-    servicio = ServicioCarga()
+    print("=== VOLTEDGE - Sistema de Carga de Vehículos Eléctricos ===\n")
 
-    usuario1 = servicio.crear_usuario(1, "Yésica", "yesica@example.com")
-    punto1 = servicio.crear_punto_carga(101, "Vigo Centro")
+    service = ChargingService()
 
-    reserva = servicio.reservar_punto(1001, usuario1, punto1)
+    # Crear estación
+    station = service.create_station(1, "Estación Central", "Vigo")
 
-    if reserva:
-        print("Reserva realizada con éxito:")
-        print(reserva)
-    else:
-        print("Error: el punto de carga no está disponible.")
+    # prueba de mantenimiento
+    print("\n--- Prueba de Mantenimientos ---")
+    service = ChargingService()  # si no lo tienes aún, usa el objeto service que ya hayas creado
+
+    # crear estación para el ejemplo
+    station = service.create_station(2, "Estación Norte", "Vigo Norte")
+    service.add_charger_to_station(2, 201, "normal")
+
+    # programar preventivo
+    m1 = service.programar_mantenimiento_preventivo(
+        id_mantenimiento=5001,
+        station_id=2,
+        fecha="2025-11-20",
+        tecnico="Técnico Ana",
+        frecuencia="mensual"
+    )
+
+    # programar correctivo
+    m2 = service.programar_mantenimiento_correctivo(
+        id_mantenimiento=5002,
+        station_id=2,
+        fecha="2025-11-21",
+        tecnico="Técnico Luis",
+        descripcion_fallo="Fallo en conector tipo 2"
+    )
+
+    # listar
+    print("\nMantenimientos registrados:")
+    for m in service.listar_mantenimientos(station_id=2):
+        print(m)
+
+    # iniciar y completar uno
+    service.iniciar_mantenimiento(5002)
+    service.completar_mantenimiento(5002, notas="Reemplazado conector, pruebas OK")
+
+    # Añadir cargadores
+    service.add_charger_to_station(1, 101, "rápido")
+    service.add_charger_to_station(1, 102, "normal")
+
+    # Registrar usuarios
+    user1 = service.register_user(1, "Yésica", "yesica@example.com")
+    user2 = service.register_user(2, "María", "maria@example.com")
+
+    # Usuario inicia carga
+    print("\nIniciando sesión de carga:")
+    service.start_charging(user1.id, station.id)
+
+    # Intentar iniciar con otro usuario (si quedan cargadores)
+    service.start_charging(user2.id, station.id)
+
+    # Finalizar la primera sesión
+    print("\nFinalizando sesión:")
+    service.end_charging(user1.id)
+
+    print("\nSimulación completada.")
 
 if __name__ == "__main__":
     main()
