@@ -10,21 +10,11 @@ Proyecto realizado para la asignatura **Arquitectura de Software**, Universidad 
 
 ## 🧩 Estructura del proyecto
 
-voltedge-proyecto/
-│
-├── src/
-│   ├── models/ 
-│   │   ├── __init__.py   
-│   │   ├── station.py
-│   │   ├── charger.py
-│   │   ├── user.py
-│   │   ├── session.py
-│   │   ├── maintenance.py     
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── service.py
-│   └── main.py          
-└── README.md            
+1. voltedge-proyecto/src/
+2. voltedge-proyecto/src/models
+3. voltedge-proyecto/src/services
+4. voltedge-proyecto/src/main,py
+5. voltedge-proyecto/README.md         
 
 --
 
