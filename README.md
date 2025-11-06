@@ -6,7 +6,6 @@ Permite **registrar usuarios**, **reservar cargadores**, **iniciar sesiones de c
 
 Proyecto realizado para la asignatura **Arquitectura de Software**, Universidad Intercontinental de la Empresa.
 
---
 
 ## Estructura del proyecto
 
@@ -16,7 +15,6 @@ Proyecto realizado para la asignatura **Arquitectura de Software**, Universidad 
 4. voltedge-proyecto/src/main,py
 5. voltedge-proyecto/README.md         
 
---
 
 ## Clases principales
 
