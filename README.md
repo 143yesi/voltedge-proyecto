@@ -8,7 +8,7 @@ Proyecto realizado para la asignatura **Arquitectura de Software**, Universidad 
 
 --
 
-## 🧩 Estructura del proyecto
+## Estructura del proyecto
 
 1. voltedge-proyecto/src/
 2. voltedge-proyecto/src/models
